@@ -13,10 +13,15 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+// Ruta principal para evitar error en Railway
+app.get('/', (req, res) => {
+  res.send('API funcionando correctamente');
+});
+
+// Rutas de autenticación
 app.use('/api', authRoutes);
 
-// Inicio del servidor — CAMBIO IMPORTANTE: usar '0.0.0.0' para Railway
-app.listen(PORT, '0.0.0.0', () => {
+// Inicio del servidor
+app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
