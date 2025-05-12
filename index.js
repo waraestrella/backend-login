@@ -7,21 +7,16 @@ const authRoutes = require('./routes/authRoutes');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Ruta principal para evitar error en Railway
-app.get('/', (req, res) => {
-  res.send('API funcionando correctamente');
-});
-
-// Rutas de autenticación
+// Rutas
 app.use('/api', authRoutes);
 
 // Inicio del servidor
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
